@@ -21,11 +21,17 @@
 </html>
 <?php 
 if(isset($_FILES['files'])){
-	var_dump($_FILES);
-	if(!is_dir('upload')){
-		mkdir('upload');
-	}
+	$limit = 512;
 	$name = uniqid().$_FILES['files']['name'];
-	move_uploaded_file($_FILES['files']['tmp_name'], __DIR__."/upload/".$name);
+	// Je converto la taille du fichier en Ko
+	$size = $_FILES['files']['size'] / 1024;
+	if($size < $limit){
+		if(!is_dir('upload')){
+			mkdir('upload');
+		}
+		move_uploaded_file($_FILES['files']['tmp_name'], __DIR__."/upload/".$name);
+	}else{
+		echo "<h1 style='color:red'>Votre fichier est trop volumineux </h1>";
+	}
 }
 ?>
