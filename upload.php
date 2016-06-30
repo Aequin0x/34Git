@@ -22,7 +22,10 @@
 <?php 
 if(isset($_FILES['files'])){
 	var_dump($_FILES);
+	if(!is_dir('upload')){
+		mkdir('upload');
+	}
 	$name = uniqid().$_FILES['files']['name'];
-	move_uploaded_file($_FILES['files']['tmp_name'], __DIR__."/img/".$name);
+	move_uploaded_file($_FILES['files']['tmp_name'], __DIR__."/upload/".$name);
 }
 ?>
