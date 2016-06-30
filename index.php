@@ -27,4 +27,28 @@ $content = file_get_contents("texte.log");
 $content .= date("Y-m-d H:i:s")." : Le script à été ouvert\r\n";
 file_put_contents("texte.log", $content);
 
+// Pour supprimer un fichier 
+
+// unlink("texte.log");
+
+// Verif qu'un fichier existe ou non
+// 'is_file' est un autre equivalent
+if(file_exists("texte.log")){
+	echo "Le fichier de log existe !";
+}else {
+	echo "Pas de fichier log";
+}
+
+// Verifier si un repertoire existe, sinon on le créer
+
+if(!is_dir('test')){
+	mkdir('test');
+	echo "Directory created";
+}
+
+// Modifier les permissions d'un fichier (sous linux)
+/*chmod('texte.txt', 0755);*/
+
+// Deplacer ou renommer un fichier
+rename('texte.log', 'test/texte.log');
 ?>
