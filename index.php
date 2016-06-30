@@ -6,6 +6,10 @@ $file = fopen("texte.txt", "r");
 var_dump(fread($file, filesize('texte.txt')));
 fclose($file);
  
+// Fonction equivalentes pour lire un fichier avec fopen
+
+echo file_get_contents('texte.log'); // equivalent de fopen>fread>fclose
+
 // Pour ecrire dans un fichier //
 
 // r = read
@@ -17,8 +21,10 @@ $file = fopen('texte.log', "a");
 fwrite($file, date("Y-m-d H:i:s")." : Le script à été ouvert\r\n");
 fclose($file);
 
-// Fonction equivalentes
+// Equivalent pour ecrire dans un fichier
 
-echo file_get_contents('texte.log'); // equivalent de fopen>fread>fclose
+$content = file_get_contents("texte.log");
+$content .= date("Y-m-d H:i:s")." : Le script à été ouvert\r\n";
+file_put_contents("texte.log", $content);
 
 ?>
